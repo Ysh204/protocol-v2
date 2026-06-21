@@ -16,6 +16,7 @@
 		"build:browser": "yarn clean && tsc -p tsconfig.json && tsc -p tsconfig.browser.json && node scripts/postbuild.js --force-env browser",
 		"build:minify": "node build-browser.js",
 		"prebuild": "node scripts/mock-optional-deps.js",
+		"prebuild:browser": "node scripts/mock-optional-deps.js",
 		"clean": "node -e \"const fs = require('fs'); fs.rmSync('lib', { recursive: true, force: true })\"",
 		"test": "mocha -r ts-node/register tests/**/*.ts --ignore 'tests/dlob/**/*.ts'",
 		"test:match": "mocha -r ts-node/register --ignore 'tests/dlob/**/*.ts'",

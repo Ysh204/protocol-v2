@@ -3,7 +3,15 @@ const path = require('path');
 
 const targetDir = path.join(__dirname, '..', 'node_modules', 'helius-laserstream');
 
-if (!fs.existsSync(targetDir)) {
+let packageResolvable = false;
+try {
+	require.resolve('helius-laserstream');
+	packageResolvable = true;
+} catch (_) {
+	// not installed or not resolvable
+}
+
+if (!packageResolvable) {
 	console.log('helius-laserstream is not installed. Creating a local shim for compilation...');
 	try {
 		fs.mkdirSync(targetDir, { recursive: true });
